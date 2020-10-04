@@ -10,4 +10,4 @@ The scores are stored into localStorage for highscore competition!
 * Click on the button which contains the correct answer for the question.
 * Wait for the new question to appear and then answer the next question.
 * Once the quiz is over, enter your name and you will be entered into the highscore competition.
-Users can also just skip right to the highscore screen without submitting their name or score by clicking "View highscores" in the top menu.
+* Users can also just skip right to the highscore screen without submitting their name or score by clicking "View highscores" in the top menu.
