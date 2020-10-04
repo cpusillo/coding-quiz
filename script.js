@@ -117,7 +117,7 @@ function checkAnswer(event){
       correctCount++;
 
       // Display a message to the user letting them know they were correct.
-      questionResultEl.textContent = "Correct";
+      questionResultEl.textContent = "Correct!";
     } else {
 
       // If the selectedChoice is not the correct answer, decrement correctCount variable by 1.
@@ -125,7 +125,7 @@ function checkAnswer(event){
       time -= 2;
 
       // Display a message to the user letting them know they were incorrect.
-      questionResultEl.textContent = "Wrong";
+      questionResultEl.textContent = "Incorrect.";
 
       // Remove time from the timer.
     }
@@ -148,7 +148,7 @@ function nextQuestion(){
   // When all Qs ask end the quiz
 
   // Clear our questionResultEl value.
-  mainQuestionArea.textContent = "";
+  questionResultEl.textContent = "";
   // Increment our question index variable by 1.
   questionIndex++;
 
@@ -183,11 +183,24 @@ function endQuiz(){
 
 function showHighScore() {
 
+  // Make room for the highscore area.
   document.body.textContent = "";
   // Prompt user for name
   var name = prompt("What is your name?");
 
-  // Check if there is anything in local storage and store it in variable
+  // Call toHighScore() function to show the user's score.
+  toHighScore();
+}
+
+/*
+  toHighScore() simply displays the highscores and the user's
+  names. Modularized so that users can skip past the game and
+  go straight to the highscores from the main page.
+*/
+function toHighScore(){
+  clearInterval(intervalId);
+  document.body.textContent = "";
+   // Check if there is anything in local storage and store it in variable
   // nothing there high_scores = false;
   var high_score = localStorage.getItem("scores");
   console.log(high_score);
@@ -228,20 +241,21 @@ function showHighScore() {
 
   var contentUL = document.createElement("ul");
 
+  contentUL.setAttribute("id", "highscore-list");
+
   for(var i = 0; i < high_score.length; i++){
     var contentLi= document.createElement("li");
     contentLi.textContent = "Name: " + high_score[i].name + " Score: " + high_score[i].score;
     contentUL.append(contentLi);
   }
   div.append(contentUL);
+
 }
-
-
 
 
  // Listen for a click on any of the LI elements, check their answer with the checkAnswer() function.
   questionListEl.addEventListener("click", checkAnswer);
 
   viewHighScores.addEventListener("click", function(){
-    endQuiz();
+    toHighScore();
   });

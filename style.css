@@ -7,6 +7,7 @@ nav li a {
 }
 .main-question-area {
     margin: 40px auto;
+    width: 50%;
 }
 
 #question-list {
@@ -34,4 +35,15 @@ nav li a {
 #question {
     font-size: 20px;
     padding: 5px;
+}
+
+#question-result {
+    border-top: 1px solid grey;
+    color: grey;
+    font-style: italic;
+}
+
+#highscore-list {
+    list-style: none;
+    margin-top: 10px;
 }
