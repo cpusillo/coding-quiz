@@ -53,7 +53,6 @@ var name;
 renderQuestion();
 
 
-
 /*
   The renderQuestion() function references our questions array
   objects and displays them for our user on the screen.
@@ -81,6 +80,7 @@ function renderQuestion() {
   for (var i = 0; i < choicesLength; i++) {
     // Create the actual li element.
     var questionListItem = document.createElement("li");
+
 
     // Add the elements from the choices array to our new questionListItem.
     questionListItem.textContent = choices[i];
@@ -135,8 +135,6 @@ function checkAnswer(event) {
 
   // Wait 2 seconds and then call the nextQuestion() function.
   setTimeout(nextQuestion, 2000);
-
-
 }
 
 /* 
@@ -189,13 +187,47 @@ function endQuiz() {
   setTimeout(showHighScore, 2000);
 }
 
-
+/*
+  showHighScore() asks the user for their name in order to
+  tie it to their score value.
+*/
 function showHighScore() {
   // Prompt user for name
-  name = prompt("What is your name?");
+  document.body.textContent = "";
 
-  // Call toHighScore() function to show the user's score.
-  toHighScore();
+  // Create our containing div, container. Add to the body.
+  var div = document.createElement("div");
+  div.setAttribute("class", "container highscores-display");
+  document.body.append(div);
+
+
+  // Create our heading content. Style. Add to our div.
+  var heading = document.createElement("h2");
+  heading.textContent = "Add your name to the leaderboard!";
+  div.append(heading);
+
+  // Create our input box. Style. Add to our div.
+  inputBox = document.createElement("input");
+  inputBox.setAttribute("id", "nameBox");
+  div.append(inputBox);
+
+
+  // Create our submit button. Style. Add to our div.
+  btnSubmit = document.createElement("button");
+  btnSubmit.setAttribute("type", "submit");
+  btnSubmit.setAttribute("class", "customBtn");
+  btnSubmit.textContent = "Submit Name";
+  div.append(btnSubmit);
+
+  // Define what our submit button will do:
+  btnSubmit.addEventListener("click", function (event) {
+    // Prevent the input box from automatically clearing out.
+    event.preventDefault();
+    // Store the value from our input box.
+    name = inputBox.value;
+    // Display the high scores to the user.
+    toHighScore();
+  });
 }
 
 /*
@@ -204,10 +236,13 @@ function showHighScore() {
   go straight to the highscores from the main page.
 */
 function toHighScore() {
+  // Stop our timer.
   clearInterval(intervalId);
+
+  // Make room for the high scores.
   document.body.textContent = "";
+
   // Check if there is anything in local storage and store it in variable
-  // nothing there high_scores = false;
   var high_score = localStorage.getItem("scores");
 
   // if high scores doesn't exist
@@ -219,19 +254,23 @@ function toHighScore() {
     high_score = JSON.parse(high_score);
   }
 
+  // Create our user object.
   var user = {
     name: name,
     score: correctCount
   }
 
+  // Push our user object values into high_score.
   high_score.push(user);
 
+  // Set our highscores to localStorage.
   localStorage.setItem("scores", JSON.stringify(high_score))
 
-  // sort array
+  // Sort the high scores by greatest to least using the sort function.
   high_score.sort(function (a, b) {
     return b.score - a.score;
   });
+
 
   // Write to DOM
 
@@ -251,26 +290,30 @@ function toHighScore() {
 
   // Create our "Go Back" buttons.
   var button = document.createElement("button");
-  button.setAttribute("class", "btn reload");
+  button.setAttribute("class", "customBtn");
   button.textContent = "Go back";
 
   // Loop through our scores and names and display them to the user.
   for (var i = 0; i < high_score.length; i++) {
-      var contentLi = document.createElement("li");
+    var contentLi = document.createElement("li");
 
-      // Do not display scores if there is no username AND a zero score.
-      // This allows our users to skip right to the highscores without registering a score and adding garbage data.
-      if(high_score[i].name != null && high_score[i].score != 0){
+    // Do not display scores if there is no username AND a zero score.
+    // This allows our users to skip right to the highscores without registering a score and adding garbage data.
+    if (high_score[i].name != null && high_score[i].score != 0) {
 
-        contentLi.innerHTML = `<strong>Name: </strong> ${high_score[i].name} <strong>Score:</strong> ${high_score[i].score}`
-        //contentLi.textContent = `Name: ${high_score[i].name} \tScore: ${high_score[i].score}`
-        contentUL.append(contentLi);
-      }
+      contentLi.innerHTML = `<strong>Name: </strong> ${high_score[i].name} <strong>Score:</strong> ${high_score[i].score}`
+      //contentLi.textContent = `Name: ${high_score[i].name} \tScore: ${high_score[i].score}`
+      contentUL.append(contentLi);
+    }
   }
+  // Add our UL to the div.
   div.append(contentUL);
+
+  // Add our button to the div.
   div.append(button);
 
-  button.addEventListener("click", function(){
+  // Define what our go back button does-- sends the user to the start of the quiz.
+  button.addEventListener("click", function () {
     location.reload()
   });
 
@@ -280,4 +323,5 @@ function toHighScore() {
 // Listen for a click on any of the LI elements, check their answer with the checkAnswer() function.
 questionListEl.addEventListener("click", checkAnswer);
 
+// Listen for a click on the "View Highscores" link. Allow the user to view scores without playing, entering a name, or having a score.
 viewHighScores.addEventListener("click", toHighScore);

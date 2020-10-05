@@ -28,24 +28,29 @@ nav li a {
 }
 
 /* ALL BUTTONS */
-#question-list li,
-.reload {
+#question-list li {
+    padding:0.35em 1.2em;
+    margin:0 0.3em 0.3em 0;
+    border-radius:10px;
+    width: 30%;
     background-color: purple;
     color: white;
-    margin: 5px;
-    padding: 10px;
-    width: 30%;
-    border-radius: 10px;
-    transition: background-color 0.5s;
+    transition: all 0.5s;
 }
 
-#question-list li:hover,
-.reload:hover {
+#question-list li:hover {
     background-color: rgb(85, 6, 85);
     transition: background-color 0.5s;
     color: white;
 }
 
+.customBtn {
+    border: none;
+    background-color: purple;
+    color: white;
+    padding: 5px;
+    border-radius:10px;
+}
 /* QUIZ RESULT SECTION */
 
 #question-result {
@@ -55,7 +60,11 @@ nav li a {
 }
 
 /* HIGHSCORE PAGE */
-
+#nameBox {
+    border: none;
+    border-bottom: 1px solid black;
+    margin-right: 10px;
+}
 .highscores-display {
     margin-top: 40px;
 }
@@ -68,3 +77,9 @@ nav li a {
 #highscore-list li:nth-child(2n-1){
     background-color: #e7e7e7;
 }
+
+@media screen and (max-width: 600px) {
+    #question-list li {
+        width: 50%;
+    }
+  }
