@@ -6,6 +6,8 @@ If the timer reaches 0 the quiz is over, score is calculated, and name is reques
 
 The scores are stored into localStorage for highscore competition!
 
+[Click here to try it now!](https://cpusillo.github.io/coding-quiz/)
+
 ## How to use this app
 * Click on the button which contains the correct answer for the question.
 * Wait for the new question to appear and then answer the next question.
