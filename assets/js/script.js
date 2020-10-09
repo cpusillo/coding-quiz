@@ -38,6 +38,9 @@ var questionListEl = document.querySelector("#question-list");
 var questionResultEl = document.querySelector("#question-result");
 var timerEl = document.querySelector("#timer");
 var viewHighScores = document.querySelector("#viewHighScores");
+var welcomeArea = document.querySelector(".welcome-area");
+var startBtn = document.querySelector("#startBtn");
+var mainQuestionArea = document.querySelector(".main-question-area");
 
 // Create our variables to keep track of our progress.
 var questionIndex = 0;
@@ -50,14 +53,16 @@ var intervalId;
 var name;
 
 // Render our first question to the user.
-renderQuestion();
 
+startBtn.addEventListener("click", renderQuestion);
 
 /*
   The renderQuestion() function references our questions array
   objects and displays them for our user on the screen.
 */
 function renderQuestion() {
+  welcomeArea.style.display = "none";
+  mainQuestionArea.style.display = "block";
 
   if (time === 0) {
     endQuiz;
