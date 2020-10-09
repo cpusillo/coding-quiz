@@ -14,3 +14,5 @@ The scores are stored into localStorage for highscore competition!
 
 ## Examples
 ![Quiz Screen](https://github.com/cpusillo/coding-quiz/blob/main/assets/img/screenshot.jpg)
+
+![Quiz Screen 2](https://github.com/cpusillo/coding-quiz/blob/main/assets/img/screenshot-2.jpg)
