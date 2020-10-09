@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="assets/css/style.css" />
 
 </head>
+<!-- Our header contains a navbar with our highscore link & game timer -->
 <header>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <ul class="navbar-nav mr-auto">
@@ -24,17 +25,22 @@
     </ul>
   </nav>
 </header>
+
+<!-- The welcome-area class greets our user and allows them to start the quiz -->
 <section class="welcome-area">
   <div class="container">
     <div id="get-started">
-      <h1>Coding Quiz</h1>
-      <p class="lead">Get ready to flex your coding knowledge! Select the correct answer for each question to rack up as
-        many points as possible before the timer runs out.</p>
-        <button class="customBtn" id="startBtn">Let's go!</button>
+      <h1><i class="fas fa-code"></i> <br /> Coding Quiz</h1>
+      <p class="lead">
+        Get ready to flex your coding knowledge! Select the correct answer for each question to rack up as
+        many points as possible before the timer runs out.
+      </p>
+      <button class="customBtn" id="startBtn">Start Quiz!</button>
     </div>
   </div>
 </section>
 
+<!-- The main-question-area class is where we will populate our questions -->
 <section class="main-question-area">
   <div class="container">
     <div id="question"></div>
@@ -45,6 +51,9 @@
   </div>
 </section>
 
+<!-- Import our fontawesome JavaScript -->
+<script src="https://kit.fontawesome.com/8a95b1eafc.js" crossorigin="anonymous"></script>
+<!-- Import our custom JavaScript code.-->
 <script src="assets/js/script.js"></script>
 </body>
 

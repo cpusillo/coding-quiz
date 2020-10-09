@@ -50,24 +50,37 @@ var correctCount = 0;
 var time = questions.length * 5;
 var intervalId;
 
+// Create a name variable in the global scope.
 var name;
 
-// Render our first question to the user.
-
+/* 
+    Our application starts out with a welcome screen.
+    when the user clicks our startBtn it renders
+    the first question to the screen and starts the
+    quiz timer.
+*/
 startBtn.addEventListener("click", renderQuestion);
 
 /*
   The renderQuestion() function references our questions array
   objects and displays them for our user on the screen.
+  This function sets our interval timer, updates that timer
+  to the screen and evaluates if the timer has run out and
+  calls endQuiz();
 */
 function renderQuestion() {
+
+  // Remove our welcome section from the UI.
   welcomeArea.style.display = "none";
+  // Replace it with our quiz question section.
   mainQuestionArea.style.display = "block";
 
+  // If our timer hits 0 seconds we call endQuiz() to stop the application.
   if (time === 0) {
-    endQuiz;
+    endQuiz();
   }
-  //create the time interval
+
+  //create the time interval, call updateTime every 1 second (1000 ms).
   intervalId = setInterval(updateTime, 1000);
 
   // write code to generate questions
@@ -81,11 +94,10 @@ function renderQuestion() {
   var choicesLength = choices.length;
 
   // Iterate through all of the answer choices and append them
-  // to the page as LI elements.
+  // to the page as li elements.
   for (var i = 0; i < choicesLength; i++) {
     // Create the actual li element.
     var questionListItem = document.createElement("li");
-
 
     // Add the elements from the choices array to our new questionListItem.
     questionListItem.textContent = choices[i];
@@ -93,16 +105,12 @@ function renderQuestion() {
     // Append each item in our choices array to the screen as li elements.
     questionListEl.append(questionListItem);
   }
-
-  if (time === 0) {
-    endQuiz();
-  }
-
 }
 
 /*
   The checkAnswer() function stores the user's click and uses input
-  validation to ensure the user clicked on a valid li tag.
+  validation to ensure the user clicked on a valid li tag. It also
+  will evaluate if the question was answered correctly or incorrectly.
 */
 function checkAnswer(event) {
   // pause the timer
@@ -124,7 +132,8 @@ function checkAnswer(event) {
 
       // Display a message to the user letting them know they were correct.
       questionResultEl.textContent = "Correct!";
-    } else {
+    } 
+    else {
 
       // If the selectedChoice is not the correct answer, decrement correctCount variable by 1.
       correctCount--;
@@ -132,8 +141,6 @@ function checkAnswer(event) {
 
       // Display a message to the user letting them know they were incorrect.
       questionResultEl.textContent = "Incorrect.";
-
-      // Remove time from the timer.
     }
 
   }
@@ -180,7 +187,7 @@ function updateTime() {
 }
 
 /*
-  The endQuiz() function stops the timer and brings the
+  The endQuiz() function clears the timer and brings the
   user to the high score screens.
 */
 function endQuiz() {
@@ -277,7 +284,7 @@ function toHighScore() {
   });
 
 
-  // Write to DOM
+  // Display our highscore to the user, via the DOM.
 
   // Create our heading content.
   var heading = document.createElement("h2");
@@ -285,8 +292,10 @@ function toHighScore() {
 
   // Create our containing div, container.
   var div = document.createElement("div");
+  // Append this div to the body.
   document.body.append(div);
   div.setAttribute("class", "container highscores-display");
+  // append our heading to this new div.
   div.append(heading);
 
   // Create our containing UL.
@@ -295,6 +304,8 @@ function toHighScore() {
 
   // Create our "Go Back" buttons.
   var button = document.createElement("button");
+
+  // Add our customBtn CSS class for styling.
   button.setAttribute("class", "customBtn");
   button.textContent = "Go back";
 
@@ -306,8 +317,9 @@ function toHighScore() {
     // This allows our users to skip right to the highscores without registering a score and adding garbage data.
     if (high_score[i].name != null && high_score[i].score != 0) {
 
+      // Display our high score name and score in cleanly formatted HTML.
       contentLi.innerHTML = `<strong>Name: </strong> ${high_score[i].name} <strong>Score:</strong> ${high_score[i].score}`
-      //contentLi.textContent = `Name: ${high_score[i].name} \tScore: ${high_score[i].score}`
+      // Append our Li to the parent ul.
       contentUL.append(contentLi);
     }
   }
@@ -317,7 +329,7 @@ function toHighScore() {
   // Add our button to the div.
   div.append(button);
 
-  // Define what our go back button does-- sends the user to the start of the quiz.
+  // Our button sends the user to the start of the quiz.
   button.addEventListener("click", function () {
     location.reload()
   });
