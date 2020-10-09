@@ -11,3 +11,6 @@ The scores are stored into localStorage for highscore competition!
 * Wait for the new question to appear and then answer the next question.
 * Once the quiz is over, enter your name and you will be entered into the highscore competition.
 * Users can also just skip right to the highscore screen without submitting their name or score by clicking "View highscores" in the top menu.
+
+## Examples
+[Quiz Screen](https://github.com/cpusillo/coding-quiz/blob/main/assets/img/screenshot.jpg)
