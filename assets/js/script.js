@@ -50,9 +50,6 @@ var correctCount = 0;
 var time = questions.length * 5;
 var intervalId;
 
-// Create a name variable in the global scope.
-var name;
-
 /* 
     Our application starts out with a welcome screen.
     when the user clicks our startBtn it renders
