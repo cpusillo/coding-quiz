@@ -212,7 +212,7 @@ function showHighScore() {
 
   // Create our heading content. Style. Add to our div.
   var heading = document.createElement("h2");
-  heading.textContent = "Add your name to the leaderboard!";
+  heading.textContent = "Add your initials to the leaderboard!";
   div.append(heading);
 
   // Create our input box. Style. Add to our div.
@@ -225,7 +225,7 @@ function showHighScore() {
   btnSubmit = document.createElement("button");
   btnSubmit.setAttribute("type", "submit");
   btnSubmit.setAttribute("class", "customBtn");
-  btnSubmit.textContent = "Submit Name";
+  btnSubmit.textContent = "Submit";
   div.append(btnSubmit);
 
   // Define what our submit button will do:
@@ -315,7 +315,7 @@ function toHighScore() {
     if (high_score[i].name != null && high_score[i].score != 0) {
 
       // Display our high score name and score in cleanly formatted HTML.
-      contentLi.innerHTML = `<strong>Name: </strong> ${high_score[i].name} <strong>Score:</strong> ${high_score[i].score}`
+      contentLi.innerHTML = `<strong>Player: </strong> ${high_score[i].name} <strong>Score:</strong> ${high_score[i].score}`
       // Append our Li to the parent ul.
       contentUL.append(contentLi);
     }
