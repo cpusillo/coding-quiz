@@ -212,7 +212,7 @@ function showHighScore() {
 
   // Create our heading content. Style. Add to our div.
   var heading = document.createElement("h2");
-  heading.textContent = "Add your initials to the leaderboard!";
+  heading.innerHTML = `You scored ${correctCount}! <br/> Add your initials to the leaderboard!`;
   div.append(heading);
 
   // Create our input box. Style. Add to our div.
