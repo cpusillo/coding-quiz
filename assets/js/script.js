@@ -302,9 +302,16 @@ function toHighScore() {
   // Create our "Go Back" buttons.
   var button = document.createElement("button");
 
+  // Create our "Clear Highscores" button
+  var clearButton = document.createElement("button");
+
   // Add our customBtn CSS class for styling.
   button.setAttribute("class", "customBtn");
   button.textContent = "Go back";
+
+  // Add our custom CSS classing for styling.
+  clearButton.setAttribute("class", "customBtn");
+  clearButton.textContent = "Clear Highscores";
 
   // Loop through our scores and names and display them to the user.
   for (var i = 0; i < high_score.length; i++) {
@@ -323,12 +330,21 @@ function toHighScore() {
   // Add our UL to the div.
   div.append(contentUL);
 
-  // Add our button to the div.
+  // Add our buttons to the div.
+  // go back button
   div.append(button);
+  // clear highscores
+  div.append(clearButton);
 
   // Our button sends the user to the start of the quiz.
   button.addEventListener("click", function () {
-    location.reload()
+    location.reload();
+  });
+
+  // Our clear button clears out the highscores from local storage.
+  clearButton.addEventListener("click", function() {
+    localStorage.clear();
+    contentUL.textContent = "";
   });
 
 }
